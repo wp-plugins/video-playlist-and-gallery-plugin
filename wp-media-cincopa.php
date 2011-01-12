@@ -4,13 +4,13 @@ Plugin Name: Post video players, slideshow albums, photo galleries and music / p
 Plugin URI: http://www.cincopa.com/media-platform/wordpress-plugin.aspx
 Description: Post rich videos and photos galleries from your cincopa account
 Author: Cincopa 
-Version: 1.93
+Version: 1.94
 */
 
 
 function _cpmp_plugin_ver()
 {
-	return 'wp1.93';
+	return 'wp1.94';
 }
 
 function _cpmp_afc()
@@ -190,6 +190,14 @@ _cpmp.push(cpo);
 	return $ret;
 }
 
+function _cpmp_feed_plugin_callback($match)
+{
+//	$ret = '<a href="http://cincopa.com/~'.urlencode($match[1]).'"><img style="border:0;" alt="Cincopa WordPress plugin" src="http://www.cincopa.com/media-platform/api/thumb.aspx?fid='.urlencode($match[1]).'&size=large" /></a>';
+	$ret = '<img style="border:0;" src="http://www.cincopa.com/media-platform/api/thumb.aspx?fid='.urlencode($match[1]).'&size=large" />';
+
+	return $ret;
+}
+
 function _cpmp_plugin($content)
 {
 	$cincopa_async = get_site_option('CincopaAsync');
@@ -201,7 +209,9 @@ function _cpmp_plugin($content)
 	if (strpos($_SERVER['REQUEST_URI'], 'cpdisable=true'))
 		return $content;
 
-	if ($cincopa_async == 'async')
+	if ( is_feed() )
+		return (preg_replace_callback(CINCOPA_REGEXP, '_cpmp_feed_plugin_callback', $content));
+	else if ($cincopa_async == 'async')
 		return (preg_replace_callback(CINCOPA_REGEXP, '_cpmp_async_plugin_callback', $content));
 	else
 		return (preg_replace_callback(CINCOPA_REGEXP, '_cpmp_plugin_callback', $content));
@@ -209,7 +219,7 @@ function _cpmp_plugin($content)
 
 function _cpmp_plugin_rss($content)
 {
-	return (preg_replace(CINCOPA_REGEXP, '', $content));
+	return (preg_replace_callback(CINCOPA_REGEXP, '_cpmp_feed_plugin_callback', $content));
 }
 
 //add_shortcode('cincopa', 'cincopa_plugin_shortcode');
