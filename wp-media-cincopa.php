@@ -4,13 +4,13 @@ Plugin Name: Post video players, slideshow albums, photo galleries and music / p
 Plugin URI: http://www.cincopa.com/media-platform/wordpress-plugin.aspx
 Description: Post rich videos and photos galleries from your cincopa account
 Author: Cincopa 
-Version: 1.94
+Version: 1.95
 */
 
 
 function _cpmp_plugin_ver()
 {
-	return 'wp1.94';
+	return 'wp1.95';
 }
 
 function _cpmp_afc()
@@ -209,7 +209,10 @@ function _cpmp_plugin($content)
 	if (strpos($_SERVER['REQUEST_URI'], 'cpdisable=true'))
 		return $content;
 
-	if ( is_feed() )
+	$cincopa_excerpt_rt = get_site_option('CincopaExcerpt');
+	if ($cincopa_excerpt_rt == 'remove' && (is_search() || is_category() || is_archive() || is_home()))
+		return preg_replace(CINCOPA_REGEXP, '', $content);
+	else if ( is_feed() )
 		return (preg_replace_callback(CINCOPA_REGEXP, '_cpmp_feed_plugin_callback', $content));
 	else if ($cincopa_async == 'async')
 		return (preg_replace_callback(CINCOPA_REGEXP, '_cpmp_async_plugin_callback', $content));
@@ -344,6 +347,7 @@ function _cpmp_mt_options_page() {
 
 	$disp_excerpt2 = $cincopa_excerpt == 'clean' ? 'checked="checked"' : '';
 	$disp_excerpt3 = $cincopa_excerpt == 'full' ? 'checked="checked"' : '';
+	$disp_excerpt4 = $cincopa_excerpt == 'remove' ? 'checked="checked"' : '';
 	$disp_excerpt1 = $cincopa_excerpt == '' || $cincopa_excerpt == 'nothing' ? 'checked="checked"' : '';
 
 	$disp_async2 = $cincopa_async == 'async' ? 'checked="checked"' : '';
@@ -380,6 +384,9 @@ function _cpmp_mt_options_page() {
 											<br/>
 											<input type="radio" <?php echo $disp_excerpt2; ?> id="embedCustomization1" name="embedRel" value="clean"/>
 											<label for="embedCustomization1">Clean excerpt (do not show gallery)</label>
+											<br/>
+											<input type="radio" <?php echo $disp_excerpt4; ?> id="embedCustomization3" name="embedRel" value="remove"/>
+											<label for="embedCustomization3">Remove gallery (do not show gallery in all non post pages)</label>
 											<br/>
 											<input type="radio" <?php echo $disp_excerpt3; ?> id="embedCustomization2" name="embedRel" value="full"/>
 											<label for="embedCustomization2">Full excerpt (show gallery)</label>
