@@ -57,7 +57,7 @@ Now with new video players and slideshows!
 
 Get more information about [Cincopa Wordpress Plugin](http://www.cincopa.com/media-platform/wordpress-plugin.aspx) and see some examples.
 
-For comments, questions and support use this email [oren.wp.plugin@cincopa.com](mailto:oren.wp.plugin@cincopa.com)
+For comments, questions and support use this email [support@cincopa.com](mailto:support@cincopa.com)
 
 <h4>Buddypress and wpmu</h4>
 Ideal multimedia solution for buddypress and mu because each user gets his own private storage space with zero cost to site owner. 
