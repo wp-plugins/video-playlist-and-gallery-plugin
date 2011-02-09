@@ -10,6 +10,8 @@ Post your videos, photo galleries/flash slideshows easily and in seconds.
 
 One professional plugin for **all your multi-media needs** - Free [Visit Site >>](http://www.cincopa.com/media-platform/wordpress-plugin.aspx) :
 
+[youtube http://www.youtube.com/watch?v=Ih59UxT9hag]
+
     
     *  Add Image galleries
     *  Add Slideshows and photo albums

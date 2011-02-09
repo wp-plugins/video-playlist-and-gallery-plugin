@@ -4,13 +4,13 @@ Plugin Name: Post video players, slideshow albums, photo galleries and music / p
 Plugin URI: http://www.cincopa.com/media-platform/wordpress-plugin.aspx
 Description: Post rich videos and photos galleries from your cincopa account
 Author: Cincopa 
-Version: 1.96
+Version: 1.97
 */
 
 
 function _cpmp_plugin_ver()
 {
-	return 'wp1.96';
+	return 'wp1.97';
 }
 
 function _cpmp_afc()
@@ -141,11 +141,11 @@ function _cpmp_plugin_callback($match)
 	$uni = uniqid('');
 	$ret = '
 <!-- Cincopa WordPress plugin '._cpmp_plugin_ver().': http://www.cincopa.com/media-platform/wordpress-plugin.aspx -->
-<div id="_cp_widget_'.$uni.'"><img src="http://www.cincopa.com/media-platform/runtime/loading.gif" style="border:0;" alt="Cincopa WordPress plugin" /></div>
+<div id="cp_widget_'.$uni.'"><img src="http://www.cincopa.com/media-platform/runtime/loading.gif" style="border:0;" alt="Cincopa WordPress plugin" /></div>
 <script src="http://www.cincopa.com/media-platform/runtime/libasync.js" type="text/javascript"></script>
 <script type="text/javascript">
 // PLEASE CHANGE DEFAULT EXCERPT HANDLING TO CLEAN OR FULL (go to your Wordpress Dashboard/Settings/Cincopa Options ...
-cp_load_widget("'.urlencode($match[0]).'", "_cp_widget_'.$uni.'");
+cp_load_widget("'.urlencode($match[0]).'", "cp_widget_'.$uni.'");
 </script>
 ';
 
@@ -161,13 +161,13 @@ function _cpmp_async_plugin_callback($match)
 	$ret = '
 <!-- Cincopa WordPress plugin '._cpmp_plugin_ver().' (async engine): http://www.cincopa.com/media-platform/wordpress-plugin.aspx -->
 
-<div id="_cp_widget_'.$uni.'"><img src="http://www.cincopa.com/media-platform/runtime/loading.gif" style="border:0;" alt="Cincopa WordPress plugin" /></div>
+<div id="cp_widget_'.$uni.'"><img src="http://www.cincopa.com/media-platform/runtime/loading.gif" style="border:0;" alt="Cincopa WordPress plugin" /></div>
 
 <script type="text/javascript">
 // PLEASE CHANGE DEFAULT EXCERPT HANDLING TO CLEAN OR FULL (go to your Wordpress Dashboard/Settings/Cincopa Options ...
 
 var cpo = [];
-cpo["_object"] ="_cp_widget_'.$uni.'";
+cpo["_object"] ="cp_widget_'.$uni.'";
 cpo["_fid"] = "'.urlencode($match[0]).'";
 
 var _cpmp = _cpmp || [];
