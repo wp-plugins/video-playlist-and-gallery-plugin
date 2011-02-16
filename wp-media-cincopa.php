@@ -4,13 +4,13 @@ Plugin Name: Post video players, slideshow albums, photo galleries and music / p
 Plugin URI: http://www.cincopa.com/media-platform/wordpress-plugin.aspx
 Description: Post rich videos and photos galleries from your cincopa account
 Author: Cincopa 
-Version: 1.97
+Version: 1.98
 */
 
 
 function _cpmp_plugin_ver()
 {
-	return 'wp1.97';
+	return 'wp1.98';
 }
 
 function _cpmp_afc()
@@ -374,7 +374,7 @@ function _cpmp_mt_options_page() {
 									<tr style="width:100%;">
 										<th valign="top" scrope="row">
 											<label for="cincopaafc">
-												Excerpt Handling (<a target="_blank" href="http://support.cincopa.com/index.php?title=Cincopa_Multimedia_Platform/Excerpt_Handling">what?</a>):
+												Excerpt Handling (<a target="_blank" href="http://help.cincopa.com/entries/448859-wordpress-plugin-settings-page#excerpt">what?</a>):
 											</label>
 										</th>
 										<td valign="top">
@@ -406,7 +406,7 @@ if (_cpmp_isAdmin())
 									<tr style="width:100%;">
 										<th valign="top" scrope="row">
 											<label for="cincopaafc">
-												Cincopa AFC (<a target="_blank" href="http://support.cincopa.com/index.php?title=Cincopa_Multimedia_Platform/Wordpress_AFC">what?</a>):
+												Cincopa AFC (<a target="_blank" href="http://help.cincopa.com/entries/448859-wordpress-plugin-settings-page#afc">what?</a>):
 											</label>
 										</th>
 										<td valign="top">
@@ -421,7 +421,7 @@ if (_cpmp_isAdmin())
 									<tr style="width:100%;">
 										<th valign="top" scrope="row">
 											<label for="cincopaasync">
-												Async Engine (<a target="_blank" href="http://support.cincopa.com/index.php?title=Cincopa_Multimedia_Platform/Async_engine">what?</a>):
+												Async Engine (<a target="_blank" href="http://help.cincopa.com/entries/448859-wordpress-plugin-settings-page#async">what?</a>):
 											</label>
 										</th>
 										<td valign="top">
@@ -514,7 +514,7 @@ function _cpmp_mt_sublevel_myaccount() {
 }
 
 function _cpmp_mt_sublevel_forum() {
-    echo "<iframe src='http://support.cincopa.com/index.php?title=Cincopa_Multimedia_Platform' width='98%' height='2000px'></iframe>";
+    echo "<iframe src='http://www.cincopa.com/redirect_to_help.aspx' width='98%' height='2000px'></iframe>";
 }
 
 
@@ -553,7 +553,7 @@ if (!class_exists('CincopaWidget')) {
 					?>
 	<p>
 		<label for=""
-			<?php echo $this->get_field_id('galleryid'); ?>"><?php _e('Gallery ID:'); ?> <a target="_blank" href="http://support.cincopa.com/index.php?title=Cincopa_Multimedia_Platform/How_To#How_do_I_add_a_gallery_to_my_Wordpress_sidebar_.3F">what?</a> <input class="widefat" id=""<?php echo $this->get_field_id('galleryid'); ?>" name="<?php echo $this->get_field_name('galleryid'); ?>" type="text" value="<?php echo $galleryid; ?>" />
+			<?php echo $this->get_field_id('galleryid'); ?>"><?php _e('Gallery ID:'); ?> <a target="_blank" href="http://help.cincopa.com/entries/405593-how-do-i-add-a-gallery-to-my-wordpress-sidebar">what?</a> <input class="widefat" id=""<?php echo $this->get_field_id('galleryid'); ?>" name="<?php echo $this->get_field_name('galleryid'); ?>" type="text" value="<?php echo $galleryid; ?>" />
 		</label>
 	</p>
 	<?php 
