@@ -17,7 +17,7 @@ One professional plugin for **all your multi-media needs** - Free [Visit Site >>
     *  Add Slideshows and photo albums
     *  Add Video
     *  Add Music playlists
-    *  Add Podcast and mp3
+    *  Publish iTunes Podcast and mp3 playlists
     *  Add Menus and much more
     *  Media Library
 
