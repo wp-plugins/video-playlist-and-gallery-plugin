@@ -4,13 +4,13 @@ Plugin Name: Post video players, slideshow albums, photo galleries and music / p
 Plugin URI: http://www.cincopa.com/media-platform/wordpress-plugin.aspx
 Description: Post rich videos and photos galleries from your cincopa account
 Author: Cincopa 
-Version: 1.101
+Version: 1.102
 */
 
 
 function _cpmp_plugin_ver()
 {
-	return 'wp1.101';
+	return 'wp1.102';
 }
 
 function _cpmp_afc()
@@ -59,7 +59,7 @@ function _cpmp_WpMediaCincopa_init() // constructor
 
 	add_action('media_buttons', '_cpmp_addMediaButton', 20);
 
-	add_action('_cpmp_media_upload', '_cpmp_media_upload');
+	add_action('media_upload_cincopa', '_cpmp_media_upload');
 	// No longer needed in WP 2.6
 	if ( !function_exists('wp_enqueue_style') )
 	{
@@ -620,6 +620,9 @@ function _cpmp_activation_notice()
 <input type="button" class="button" value="Cincopa Options Page" onclick="document.location.href = 'options-general.php?page=cincopaoptions';" />
 
 <input type="button" class="button" value="Hide this message" onclick="document.location.href = 'options-general.php?page=cincopaoptions&amp;hide_note=welcome_notice';" />
+
+<input type="button" class="button" value="Video Tutorial" onclick="window.open('http://help.cincopa.com/entries/488838-how-to-use-the-wordpress-plugin');" />
+
 				</p>
 
 			</div>
