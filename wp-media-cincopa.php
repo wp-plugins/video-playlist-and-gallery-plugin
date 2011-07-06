@@ -4,13 +4,13 @@ Plugin Name: Post video players, slideshow albums, photo galleries and music / p
 Plugin URI: http://www.cincopa.com/media-platform/wordpress-plugin.aspx
 Description: Post rich videos and photos galleries from your cincopa account
 Author: Cincopa 
-Version: 1.112
+Version: 1.113
 */
 
 
 function _cpmp_plugin_ver()
 {
-	return 'wp1.112';
+	return 'wp1.113';
 }
 
 function _cpmp_afc()
@@ -129,7 +129,6 @@ function _cpmp_media_upload_type_cincopa()
 
 _cpmp_WpMediaCincopa_init();
 
-//define("CINCOPA_REGEXP", "/\[cincopa ([[:print:]]+?)\]/");
 define("CINCOPA_REGEXP", "/\[cincopa([^\]]*)\]/");
 
 
@@ -194,7 +193,6 @@ _cpmp.push(cpo);
 
 function _cpmp_feed_plugin_callback($match)
 {
-//	$ret = '<a href="http://cincopa.com/~'.urlencode($match[1]).'"><img style="border:0;" alt="Cincopa WordPress plugin" src="http://www.cincopa.com/media-platform/api/thumb.aspx?fid='.urlencode($match[1]).'&size=large" /></a>';
 	$ret = '<img style="border:0;" src="http://www.cincopa.com/media-platform/api/thumb.aspx?fid='.urlencode($match[1]).'&size=large" />';
 
 	return $ret;
@@ -266,12 +264,11 @@ function _cpmp_dashboard_content()
 
 // action function for above hook
 function _cpmp_mt_add_pages() {
+
 	// Add a new submenu under Options:
 	
 	add_options_page('Cincopa Options', 'Cincopa Options', 8, 'cincopaoptions', '_cpmp_mt_options_page');
 
-    // Add a new submenu under Manage:
-//	add_management_page('Test Manage', 'Test Manage', 8, 'testmanage', '_cpmp_mt_manage_page');
 
 	if(function_exists('add_menu_page'))
 	{
