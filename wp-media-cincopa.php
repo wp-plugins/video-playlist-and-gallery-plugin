@@ -4,13 +4,13 @@ Plugin Name: Post video players, slideshow albums, photo galleries and music / p
 Plugin URI: http://www.cincopa.com/media-platform/wordpress-plugin.aspx
 Description: Post rich videos and photos galleries from your cincopa account
 Author: Cincopa 
-Version: 1.113
+Version: 1.114
 */
 
 
 function _cpmp_plugin_ver()
 {
-	return 'wp1.113';
+	return 'wp1.114';
 }
 
 function _cpmp_afc()
@@ -129,6 +129,8 @@ function _cpmp_media_upload_type_cincopa()
 
 _cpmp_WpMediaCincopa_init();
 
+
+// this new regex should resolve the problem of having unicode chars in the tag
 define("CINCOPA_REGEXP", "/\[cincopa([^\]]*)\]/");
 
 
