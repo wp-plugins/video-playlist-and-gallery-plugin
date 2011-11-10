@@ -4,13 +4,13 @@ Plugin Name: Post video players, slideshow albums, photo galleries and music / p
 Plugin URI: http://www.cincopa.com/media-platform/wordpress-plugin.aspx
 Description: Post rich videos and photos galleries from your cincopa account
 Author: Cincopa 
-Version: 1.114
+Version: 1.115
 */
 
 
 function _cpmp_plugin_ver()
 {
-	return 'wp1.114';
+	return 'wp1.115';
 }
 
 function _cpmp_afc()
@@ -310,11 +310,6 @@ function _cpmp_mt_options_page() {
 		exit;
 	}
 
-	if (strpos($_SERVER['QUERY_STRING'], 'hide_note=premiumpress_notice'))
-	{
-		update_site_option('premiumpress_notice', _cpmp_plugin_ver());
-	}
-
 	$cincopa_afc = get_site_option('CincopaAFC');
 	$cincopa_excerpt = get_site_option('CincopaExcerpt');
 	$cincopa_async = get_site_option('CincopaAsync');
@@ -456,21 +451,6 @@ if (_cpmp_isAdmin())
 										</th>
 									</tr>
 
-<?php						if (get_site_option('premiumpress_notice') != _cpmp_plugin_ver())
-									{	?>
-										<div id="message" class="updated fade">
-											<p>
-												All our products are integrated with Premium Press business themes, <a target="_blank" href="http://www.premiumpress.com/?piwik_campaign=WordpressPlugin&piwik_kwd=cincopa">click here for details</a>.
-											</p>
-											<p>
-
-												<input type="button" class="button" value="View premiumpress themes" onclick="window.open('http://www.premiumpress.com/?piwik_campaign=WordpressPlugin&piwik_kwd=cincopa');" />
-
-												<input type="button" class="button" value="Hide this message" onclick="document.location.href = 'options-general.php?page=cincopaoptions&amp;hide_note=premiumpress_notice';" />
-											</p>
-
-										</div>
-<?php							} ?>
 
 								</table>
 							</div>

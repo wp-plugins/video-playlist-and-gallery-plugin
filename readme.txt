@@ -8,7 +8,7 @@ Post your videos, photo galleries/flash slideshows easily and in seconds.
 
 == Description ==
 
-One professional plugin for **all your multi-media needs** - Free [Visit Site >>](http://www.cincopa.com/media-platform/wordpress-plugin.aspx) :
+One professional plugin for **all your multi-media needs** - Free [Visit Site >>](http://lp.cincopa.com/) :
 
 [youtube http://www.youtube.com/watch?v=Ih59UxT9hag]
 
@@ -27,7 +27,7 @@ One professional plugin for **all your multi-media needs** - Free [Visit Site >>
 * Automatic **resizing** of photos
 * Automatic **video transcoding** to flv/3gp/mp4
 * Complete analytics of your traffic
-* Support iPhone, iPad, blackberry automatically and other smart and mobile phones
+* Support iPhone, iPad, Android, blackberry automatically and other smart and mobile phones
 * Hosting and delivering your media on Amazon S3 Web Services ensure scalability and reliability.
 * Video hosting, video serving, video streaming and pseudo streaming (progressive download) solutions
 * Managment of the galleries is simple and straight forward
