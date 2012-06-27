@@ -4,13 +4,13 @@ Plugin Name: Post video players, slideshow albums, photo galleries and music / p
 Plugin URI: http://www.cincopa.com/media-platform/wordpress-plugin.aspx
 Description: Post rich videos and photos galleries from your cincopa account
 Author: Cincopa 
-Version: 1.116
+Version: 1.117
 */
 
 
 function _cpmp_plugin_ver()
 {
-	return 'wp1.116';
+	return 'wp1.117';
 }
 
 function _cpmp_afc()
@@ -58,6 +58,9 @@ function _cpmp_WpMediaCincopa_init() // constructor
 //		load_plugin_textdomain('wp-media-cincopa', PLUGINDIR.'/'.dirname(plugin_basename(__FILE__)));
 
 	add_action('media_buttons', '_cpmp_addMediaButton', 20);
+        
+        
+        
 
 	add_action('media_upload_cincopa', '_cpmp_media_upload');
 	// No longer needed in WP 2.6
@@ -70,17 +73,135 @@ function _cpmp_WpMediaCincopa_init() // constructor
 	//if(!function_exists('curl_init') && !ini_get('allow_url_fopen')) {}
 }
 
+function _cpmp_media_menu($tabs) {
+    $newtab = array('cincopabox' => __('Cincopa', 'cincopa'));
+    return array_merge($tabs, $newtab);
+}
+add_filter('media_upload_tabs', '_cpmp_media_menu');
+
+
+function media_cincopabox_process() {
+    if(isset($_REQUEST['wrt'])){
+        _cpmp_media_upload_type_cincopa();
+        return;
+    }
+    if (sizeof($_POST)>0){
+        var_dump($_POST);
+        
+    }
+    media_upload_header();
+    ?>
+    <iframe src="<?php echo _cpmp_url().'/media-platform/start.aspx?ver='._cpmp_plugin_ver()._cpmp_afc().'&rdt='.urlencode(_cpmp_selfURL()."&")?>&" width="660" height="90%"></iframe>
+    <?
+}
+function cincopabox_menu_handle() {
+    
+    return wp_iframe( 'media_cincopabox_process');
+}
+
+add_action('media_upload_cincopabox', 'cincopabox_menu_handle');
+
+add_filter('wp_fullscreen_buttons', '_cpmp_addMediaButton_fullscreen', 20);
+function _cpmp_addMediaButton_fullscreen($buttons){
+    	global $post_ID, $temp_ID;
+        
+            $media_upload_iframe_src = get_option('siteurl')."/wp-admin/media-upload.php?post_id=$uploading_iframe_ID";
+            $media_cincopa_iframe_src = apply_filters('media_cincopa_iframe_src', "$media_upload_iframe_src&amp;type=cincopa&amp;tab=cincopa");
+            $media_cincopa_title = __('Add Cincopa photo', 'wp-media-cincopa');
+            $link =  "{$media_cincopa_iframe_src}&amp;TB_iframe=true&amp;height=500&amp;width=640\' title=\'$media_cincopa_title\'";
+            $onclick = "tb_show('$media_cincopa_title', '$link', false);";
+            $buttons['cincopabox']=array(
+                'title'=>'Cincopa',
+                'onclick'=>$onclick,
+                'both'=>TRUE
+
+            );
+            
+            return $buttons;
+}
+
 function _cpmp_addMediaButton($admin = true)
 {
 	global $post_ID, $temp_ID;
 	$uploading_iframe_ID = (int) (0 == $post_ID ? $temp_ID : $post_ID);
 
-	$media_upload_iframe_src = get_option('siteurl').'/wp-admin/media-upload.php?post_id=$uploading_iframe_ID';
+	$media_upload_iframe_src = get_option('siteurl')."/wp-admin/media-upload.php?post_id=$uploading_iframe_ID";
 
 	$media_cincopa_iframe_src = apply_filters('media_cincopa_iframe_src', "$media_upload_iframe_src&amp;type=cincopa&amp;tab=cincopa");
-	$media_cincopa_title = __('Add Cincopa photo', 'wp-media-cincopa');
+	$media_cincopa_title = __('Add Cincopa photo '.('<span title=\'Toggle fullscreen mode\' class=\'wp_themeSkin cincopa_fullscreen\'><span class=\'mceIcon mce_wp_fullscreen\' onclick=\'cincopa_fullscreen()\'></span></span>'), 'wp-media-cincopa');
+        ?>
+<script>
+    var fullscreenmode = false;
+    function cincopa_fullscreen(){
+        if(fullscreenmode){
+            jQuery('#wpbody').css('height', '');
+            jQuery('#wpbody').css('overflow', '');
+            jQuery('#TB_window').css('left', '');
+            jQuery(window).resize();
+            fullscreenmode = false;
+        }else{
+            fullscreenmode = true;
+            
+            jQuery('#wpbody').css('height', '100');
+            jQuery('#wpbody').css('overflow', 'hidden');
+            
+            
+            var h100 = $(window).height();
+            jQuery('#TB_window').height(h100);
 
-	echo "<a class=\"thickbox\" href=\"{$media_cincopa_iframe_src}&amp;TB_iframe=true&amp;height=500&amp;width=640\" title=\"$media_cincopa_title\"><img src=\""._cpmp_pluginURI()."/media-cincopa.gif\" alt=\"$media_cincopa_title\" /></a>";
+            var w100 = $(window).width();
+            jQuery('#TB_window').width(w100);
+            
+            jQuery('#TB_window').css('top', 0);
+            jQuery('#TB_window').css('left', 0);
+            jQuery('#TB_window').css('margin-left', 0);
+            jQuery('#TB_window').css('z-index', 999991);
+
+            jQuery('#TB_iframeContent').css('width', w100);
+            jQuery('#TB_iframeContent').css('height', h100);
+        }
+
+
+        jQuery("#TB_window").bind('tb_unload', function() {
+            fullscreenmode = true;
+            cincopa_fullscreen();
+        });
+        
+    }
+    
+
+
+    jQuery(window).bind("resize", function(e){
+        jQuery('#TB_window').css('left', '');
+        jQuery('#wpbody').css('height', '');
+        jQuery('#wpbody').css('overflow', '');
+    }); 
+    
+
+</script> 
+<style>
+    #TB_ajaxWindowTitle {
+        float: left;
+        padding: 6px 10px 0;
+        text-align: center;
+        width: 90%;
+    }
+    .cincopa_fullscreen{
+        display: inline;
+        float: left;
+        margin-top: -2px;
+        cursor: pointer;
+    }
+    .mceIcon.mce_cincopabox{
+        background-image: url('<?php echo _cpmp_pluginURI();?>/media-cincopa.gif');
+        background-position: center center;
+    }
+</style>
+        <?
+
+	$link =  "<a class=\"thickbox\" href=\"{$media_cincopa_iframe_src}&amp;TB_iframe=true&amp;height=500&amp;width=640\" title=\"$media_cincopa_title\"><img src=\""._cpmp_pluginURI()."/media-cincopa.gif\" alt=\"$media_cincopa_title\" /></a>";
+        echo $link;
+   
 }
 
 function _cpmp_modifyMediaTab($tabs)
@@ -262,6 +383,7 @@ function _cpmp_dashboard()
 function _cpmp_dashboard_content()
 {
 
+        
 	echo "<iframe src='http://www.cincopa.com/media-platform/wordpress-dashboard-content.aspx?ver="._cpmp_plugin_ver()._cpmp_afc()."&src=".urlencode(_cpmp_selfURL())."' width='100%' height='370px' scrolling='no'></iframe>";
 
 }

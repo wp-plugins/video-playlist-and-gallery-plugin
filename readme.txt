@@ -1,8 +1,8 @@
 === Plugin Name ===
 Contributors: nicashmu
-Tags: cincopa, buddypress, photos, flash, flv, slideshow, images, amazon, gallery, media, cooliris, admin, post, WPtouch, photo-albums, pictures, plugin, widget, photo, picture, s3, music, playlists, playlist, sidebar, ajax, video, vidavee, iphone, cms, ipod, smooth gallery, nextgen, javascript, embed, menus, analytics, media library, itunes, mu, podpress, lightbox, podpress
+Tags: cincopa, buddypress, photos, flash, flv, slideshow, images, amazon, gallery, media, cooliris, admin, post, WPtouch, photo-albums, pictures, plugin, widget, photo, picture, s3, music, playlists, playlist, sidebar, ajax, video, vidavee, iphone, cms, ipod, smooth gallery, nextgen, javascript, embed, menus, analytics, media library, itunes, mu, podpress, lightbox, podpress, flowplayer, jw player, comments, twitter, page, google, links, image
 Requires at least: 2.0.2
-Tested up to: 3.3.1
+Tested up to: 3.4
 
 Post your videos, photo galleries/flash slideshows easily and in seconds.
 
