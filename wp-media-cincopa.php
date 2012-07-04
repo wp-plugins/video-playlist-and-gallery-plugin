@@ -4,13 +4,13 @@ Plugin Name: Post video players, slideshow albums, photo galleries and music / p
 Plugin URI: http://www.cincopa.com/media-platform/wordpress-plugin.aspx
 Description: Post rich videos and photos galleries from your cincopa account
 Author: Cincopa 
-Version: 1.117
+Version: 1.118
 */
 
 
 function _cpmp_plugin_ver()
 {
-	return 'wp1.117';
+	return 'wp1.118';
 }
 
 function _cpmp_afc()
@@ -55,8 +55,6 @@ function _cpmp_pluginURI()
 
 function _cpmp_WpMediaCincopa_init() // constructor
 {
-//		load_plugin_textdomain('wp-media-cincopa', PLUGINDIR.'/'.dirname(plugin_basename(__FILE__)));
-
 	add_action('media_buttons', '_cpmp_addMediaButton', 20);
         
         
@@ -391,7 +389,8 @@ function _cpmp_dashboard_content()
 
 
 // action function for above hook
-function _cpmp_mt_add_pages() {
+function _cpmp_mt_add_pages()
+{
 
 	// Add a new submenu under Options:
 	
@@ -423,11 +422,9 @@ function _cpmp_isAdmin()
 	return !function_exists('is_site_admin') || is_site_admin() == true;
 }
 
-function _cpmp_mt_options_page() {
+function _cpmp_mt_options_page()
+{
 
-//	if( is_site_admin() == false ) {
-//		wp_die( __('You do not have permission to access this page.') );
-//	}
 
 	if (strpos($_SERVER['QUERY_STRING'], 'hide_note=welcome_notice'))
 	{
@@ -743,11 +740,6 @@ function _cpmp_activation_notice()
 		echo "<img src='http://goo.gl/HqSz' width=0 height=0 />";
 	}
 }
-
-
-
-//if (get_site_option('cincopa_welcome_notice') != _cpmp_plugin_ver())
-//	add_action( 'admin_notices', '_cpmp_activation_notice' );
 
 
 
