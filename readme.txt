@@ -1,46 +1,43 @@
-=== Plugin Name ===
+=== Cincopa WordPress Media Plugin ===
 Contributors: nicashmu
 Tags: cincopa, buddypress, photos, flash, flv, slideshow, images, amazon, gallery, media, cooliris, admin, post, WPtouch, photo-albums, pictures, plugin, widget, photo, picture, s3, music, playlists, playlist, sidebar, ajax, video, vidavee, iphone, cms, ipod, smooth gallery, nextgen, javascript, embed, menus, analytics, media library, itunes, mu, podpress, lightbox, podpress, flowplayer, jw player, comments, twitter, page, google, links, image
 Requires at least: 2.0.2
 Tested up to: 3.4.1
 
-Post your videos, photo galleries/flash slideshows easily and in seconds.
+Post your videos, photo galleries/flash slideshows, music and playlists easily and in seconds.
 
 == Description ==
 
-One professional plugin for **all your multi-media needs** - Free [Visit Site >>](http://lp.cincopa.com/) :
+No need for multiple plugins for your WordPress media. Cincopa is **The only plugin you need for all your media needs**. Use Cincopa to easily add videos, photo galleries, slideshows, music and playlists and much more. Enjoy more than 40 designed skins for slideshows, video players, Cooliris, Lightbox and many more.
 
-[youtube http://www.youtube.com/watch?v=Ih59UxT9hag]
+* **Fully managed** to ensure high speed, scalability, security and reliability of your media. [Read more](http://www.cincopa.com/media-platform/services/what-is-a-cdn)
 
-    
-    *  Add Image galleries
-    *  Add Slideshows and photo albums
-    *  Add Video
-    *  Add Music playlists
-    *  Publish iTunes Podcast and mp3 playlists
-    *  Add Menus and much more
-    *  Media Library
+* **Expert WordPress Support** - full [technical support]( http://help.cincopa.com/home), many [tutorials](http://help.cincopa.com/categories/9559-media-platform-guides-tutorials) and [video tutorials](http://help.cincopa.com/forums/376513-video-tutorials) to get you started.
+
+* Read more about [Cincopa WordPress Media Plugin](http://www.cincopa.com/media-platform/wordpress-plugin.aspx)
 
 
-* **44 skins and more** - slideshow, video players, playlists, flash, full-screen, Cooliris, lightbox and wedding skins etc
+= Features =
+
+* **44 skins and more** - slideshows, video players, playlists, flash, full-screen, Cooliris, lightbox, wedding skins and many more
+* Many customization options: size, colors, text and more
+* Simple media management directly from your WordPress dashboard
+* Automatic **resizing of photos**
 * **Automatic uploading and hosting**
-* Automatic **resizing** of photos
 * Automatic **video transcoding** to flv/3gp/mp4
+* Supported file types - avi, mov, wmv, mp4, m4a, f4a, f4b, f4v, f4p, m2ts, mts, DVD vob, mkv, rmvb, m1v, qt, div, divx, dv, 3gp, 3gpp, 3g2, mpg, mpeg, mpe, flv, wav, wma
 * Complete analytics of your traffic
 * Support iPhone, iPad, Android, blackberry automatically and other smart and mobile phones
 * Hosting and delivering your media on Amazon S3 Web Services ensure scalability and reliability.
 * Video hosting, video serving, video streaming and pseudo streaming (progressive download) solutions
-* Managment of the galleries is simple and straight forward
 * Many types of players to choose from including JW, flowplay, Cooliris and others
-* Many customization options, sizes, colors, text etc
 * Support playlist with customizable side, bottom and top list using CSS
 * Add caption and description to any item
 * Integrates with your CDN solution
-* Managment tool to allow your users/designers/web master to upload videos
+* Management tool to allow your users/designers/web master to upload videos
 * Embed code button directly into article
 * Progressive Download (Pseudo streaming - httpd)
 * HD widescreen flv and H.264, ideal for videoblog and photoblog
-* Supported file types - avi, mov, wmv, mp4, m4a, f4a, f4b, f4v, f4p, m2ts, mts, DVD vob, mkv, rmvb, m1v, qt, div, divx, dv, 3gp, 3gpp, 3g2, mpg, mpeg, mpe, flv, wav, wma
 * Preview image in 4 sizes (for first frame of video).
 * Full Screen feature.
 * Domain lock feature to protect your video
@@ -49,20 +46,20 @@ One professional plugin for **all your multi-media needs** - Free [Visit Site >>
 * Google analytics Tracking Enabled
 * Support other CMS systems and public web sites
 * Post to your blog from anywhere and even if your videos are at home on your PC
-* The plugin is FREE, we do offer a pro account with even more options.
+* The plugin is FREE, we do offer a [pro account] (http://www.cincopa.com/cincopamanager/paypal/plans.aspx) with even more options.
 
-Cincopa Content Gallery creates an automated, fully customizable image gallery, slideshows, video and music playlists anywhere within your WordPress site. Choose your videos, images and music and display skin, pages or posts with custom overlay text and a rotating thumbnail belts.
+[youtube http://www.youtube.com/watch?v=Ih59UxT9hag]
 
-Now with new video players and slideshows!
 
-**[Download now!](http://downloads.wordpress.org/plugin/post-rich-videos-and-photos-galleries.zip)**
+Thousands of site are already using Cincopa, [Start now for free](http://downloads.wordpress.org/plugin/video-playlist-and-gallery-plugin.zip) and add media to your WordPress site in seconds.
 
-Get more information about [Cincopa Wordpress Plugin](http://www.cincopa.com/media-platform/wordpress-plugin.aspx) and see some examples.
+
+Get more information about [Cincopa WordPress Media Plugin](http://www.cincopa.com/media-platform/wordpress-plugin.aspx) and see some examples.
 
 For comments, questions and support use this email [support@cincopa.com](mailto:support@cincopa.com)
 
 <h4>Buddypress and wpmu</h4>
-Ideal multimedia solution for buddypress and mu because each user gets his own private storage space with zero cost to site owner. 
+Ideal multimedia solution for BuddyPress and mu because each user gets his own private storage space with zero cost to site owner. 
 
 
 == Installation ==
@@ -125,4 +122,3 @@ If you are using one of those low cost shared hosting solution then you better l
 10. Launch Cincopa by Clicking the C icon above the Text box
 11. Cincopa Menu in the Dashboard
 12. Cooliris with Videos and Photos
-
