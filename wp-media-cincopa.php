@@ -4,13 +4,13 @@ Plugin Name: Post video players, slideshow albums, photo galleries and music / p
 Plugin URI: http://www.cincopa.com/media-platform/wordpress-plugin.aspx
 Description: Post rich videos and photos galleries from your cincopa account
 Author: Cincopa 
-Version: 1.120
+Version: 1.121
 */
 
 
 function _cpmp_plugin_ver()
 {
-	return 'wp1.120';
+	return 'wp1.121';
 }
 
 function _cpmp_afc()
@@ -263,8 +263,8 @@ function _cpmp_plugin_callback($match)
 	$uni = uniqid('');
 	$ret = '
 <!-- Cincopa WordPress plugin '._cpmp_plugin_ver().': http://www.cincopa.com/media-platform/wordpress-plugin.aspx -->
-<div id="cp_widget_'.$uni.'"><img src="http://www.cincopa.com/media-platform/runtime/loading.gif" style="border:0;" alt="Cincopa WordPress plugin" /></div>
-<script src="http://www.cincopa.com/media-platform/runtime/libasync.js" type="text/javascript"></script>
+<div id="cp_widget_'.$uni.'"><img src="//www.cincopa.com/media-platform/runtime/loading.gif" style="border:0;" alt="Cincopa WordPress plugin" /></div>
+<script src="//www.cincopa.com/media-platform/runtime/libasync.js" type="text/javascript"></script>
 <script type="text/javascript">
 /* PLEASE CHANGE DEFAULT EXCERPT HANDLING TO CLEAN OR FULL (go to your Wordpress Dashboard/Settings/Cincopa Options ... */
 cp_load_widget("'.urlencode($match[0]).'", "cp_widget_'.$uni.'");
@@ -283,7 +283,7 @@ function _cpmp_async_plugin_callback($match)
 	$ret = '
 <!-- Cincopa WordPress plugin '._cpmp_plugin_ver().' (async engine): http://www.cincopa.com/media-platform/wordpress-plugin.aspx -->
 
-<div id="cp_widget_'.$uni.'"><img src="http://www.cincopa.com/media-platform/runtime/loading.gif" style="border:0;" alt="Cincopa WordPress plugin" /></div>
+<div id="cp_widget_'.$uni.'"><img src="//www.cincopa.com/media-platform/runtime/loading.gif" style="border:0;" alt="Cincopa WordPress plugin" /></div>
 
 <script type="text/javascript">
 /* PLEASE CHANGE DEFAULT EXCERPT HANDLING TO CLEAN OR FULL (go to your Wordpress Dashboard/Settings/Cincopa Options ... */
@@ -297,7 +297,7 @@ _cpmp.push(cpo);
 
 (function() {
 	var cp = document.createElement("script"); cp.type = "text/javascript";
-	cp.async = true; cp.src = "http://www.cincopa.com/media-platform/runtime/libasync.js";
+	cp.async = true; cp.src = "//www.cincopa.com/media-platform/runtime/libasync.js";
 	var c = document.getElementsByTagName("script")[0];
 	c.parentNode.insertBefore(cp, c);
 })();
