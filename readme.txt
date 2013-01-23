@@ -22,7 +22,7 @@ Read more about [Cincopa WordPress Media Plugin](http://www.cincopa.com/media-pl
 
 = Features =
 
-* **44 skins and more** - slideshows, video players, playlists, flash, full-screen, Cooliris, lightbox, wedding skins and many more
+* **[44 skins and more](http://www.cincopa.com/media-platform/skins)** - slideshows, video players, playlists, flash, full-screen, Cooliris, lightbox, wedding skins and many more
 * Many customization options: size, colors, text and more
 * Simple media management directly from your WordPress dashboard
 * Automatic **resizing of photos**
