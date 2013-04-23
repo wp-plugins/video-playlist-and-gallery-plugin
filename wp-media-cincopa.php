@@ -4,13 +4,13 @@ Plugin Name: Post video players, slideshow albums, photo galleries and music / p
 Plugin URI: http://www.cincopa.com/media-platform/wordpress-plugin.aspx
 Description: Post rich videos and photos galleries from your cincopa account
 Author: Cincopa 
-Version: 1.125
+Version: 1.126
 */
 
 
 function _cpmp_plugin_ver()
 {
-	return 'wp1.125';
+	return 'wp1.126';
 }
 
 function _cpmp_afc()
@@ -87,7 +87,7 @@ function media_cincopabox_process() {
     media_upload_header();
     ?>
     <iframe src="<?php echo _cpmp_url().'/media-platform/start.aspx?ver='._cpmp_plugin_ver()._cpmp_afc().'&rdt='.urlencode(_cpmp_selfURL()."&")?>&" width="100%" height="98%"></iframe>
-    <?
+    <?php
 }
 function cincopabox_menu_handle() {
     
@@ -106,8 +106,9 @@ function _cpmp_addMediaButton($admin = true)
 
 	$media_cincopa_iframe_src = apply_filters('media_cincopa_iframe_src', "$media_upload_iframe_src&amp;type=cincopa&amp;tab=cincopa");
 	$media_cincopa_title = __('Add Cincopa Media', 'wp-media-cincopa');
-
-	$link =  "<a class=\"thickbox\" href=\"{$media_cincopa_iframe_src}&amp;TB_iframe=true&amp;height=500&amp;width=640\" title=\"$media_cincopa_title\"><img src=\""._cpmp_pluginURI()."/media-cincopa.gif\" alt=\"$media_cincopa_title\" /></a>";
+ $bloginfo = get_bloginfo('version');
+	if($bloginfo = substr(get_bloginfo('version'), 0, 3)>=3.5): $link =  "<a onClick=\"cincopa_launch_popup()\" class=\"insert-media \" data-editor=\"content\" title=\"Add Media\"><img src=\""._cpmp_pluginURI()."/media-cincopa.gif\" alt=\"$media_cincopa_title\" /></a>";
+	else: $link ="<a class=\"thickbox\" href=\"{$media_cincopa_iframe_src}&amp;TB_iframe=true&amp;height=500&amp;width=640\" title=\"$media_cincopa_title\"><img src=\""._cpmp_pluginURI()."/media-cincopa.gif\" alt=\"$media_cincopa_title\" /></a>";endif;
         echo $link;
    
 }
@@ -650,8 +651,35 @@ function _cpmp_activation_notice()
 		update_site_option('cincopa_installed', 'true');
 		echo "<img src='http://goo.gl/HqSz' width=0 height=0 />";
 	}
+
 }
 
+add_action( 'admin_footer-post-new.php', 'cincopa_mediaDefault_script' );
+add_action( 'admin_footer-post.php', 'cincopa_mediaDefault_script' );
+add_action( 'admin_footer-index.php', 'cincopa_mediaDefault_script' );
+
+function cincopa_mediaDefault_script()
+{
+	?>
+		<script type="text/javascript">
+			var cincopa_popup_timer = null;
+			function cincopa_launch_popup()
+			{
+				cincopa_popup_timer = setInterval(cincopa_check_popup, 200);
+			}
+
+			function cincopa_check_popup()
+			{
+				if (jQuery(".media-menu-item:contains('Cincopa')").length > 0)
+				{
+					jQuery(".media-menu-item:contains('Cincopa')")[0].click();
+					clearInterval(cincopa_popup_timer);
+				}
+			}
+
+		</script>
+	<?php
+} 
 
 
 ?>
