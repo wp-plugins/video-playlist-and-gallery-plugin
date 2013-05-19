@@ -98,7 +98,7 @@ var cincopaGallery = {
 		}
 		
 		jQuery.getScript(
-			"http://www.cincopa.com/media-platform/my-galleries-getlist?callback=cincopaGallery._client_fill"
+			"http://www.cincopa.com/media-platform/my-galleries-getlist?disable_editor=true&callback=cincopaGallery._client_fill"
 		);
 	},
 	fill: function () {

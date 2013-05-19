@@ -4,14 +4,12 @@ Plugin Name: Post video players, slideshow albums, photo galleries and music / p
 Plugin URI: http://www.cincopa.com/media-platform/wordpress-plugin.aspx
 Description: Post rich videos and photos galleries from your cincopa account
 Author: Cincopa 
-Version: 1.127
+Version: 1.128
 */
-
-require_once 'class.cincopa.php';
 
 function _cpmp_plugin_ver()
 {
-	return 'wp1.127';
+	return 'wp1.128';
 }
 
 function _cpmp_afc()
@@ -301,7 +299,8 @@ wp_oembed_add_provider( 'http://www.cincopa.com/*', 'http://www.cincopa.com/medi
 if (get_site_option('cincopa_welcome_notice') != _cpmp_plugin_ver())
 	add_action( 'admin_notices', '_cpmp_activation_notice' );
 
-if ( get_site_option('CincopaOpenGraph') == 1 ) {
+$open_graph_mode = get_site_option('CincopaOpenGraph');
+if ( $open_graph_mode == 1 ) {
 	add_action('wp_head', '_cpmp_buffer_start');
 	add_action('wp_footer', '_cpmp_buffer_end');
 		
@@ -470,6 +469,11 @@ function _cpmp_mt_options_page()
 	$cincopa_excerpt = get_site_option('CincopaExcerpt');
 	$cincopa_async = get_site_option('CincopaAsync');
 	$cincopa_opengraph = get_site_option('CincopaOpenGraph');
+	if ( $cincopa_opengraph === false ) {
+		// enabled by default
+		update_site_option('CincopaOpenGraph', 1);
+		$cincopa_opengraph = 1;	
+	}
 	
 	if ( isset($_POST['submit']) )
 	{
@@ -496,10 +500,12 @@ function _cpmp_mt_options_page()
 		if (isset($_POST['open_graph']) && $_POST['open_graph'] == 1)
 		{
 			$cincopa_opengraph = 1;
-			update_site_option('cincopaopengraph', $cincopa_opengraph);			
+			update_site_option('CincopaOpenGraph', 1);			
 		}
-		else 
-			update_site_option('cincopaopengraph', 0);
+		else {
+			update_site_option('CincopaOpenGraph', 0);
+			$cincopa_opengraph = 0;
+		}
 		
 		echo "<div id=\"updatemessage\" class=\"updated fade\"><p>Cincopa settings updated.</p></div>\n";
 		echo "<script type=\"text/javascript\">setTimeout(function(){jQuery('#updatemessage').hide('slow');}, 3000);</script>";	
@@ -514,7 +520,7 @@ function _cpmp_mt_options_page()
 	$disp_async2 = $cincopa_async == 'async' ? $tpl_checked : '';
 	$disp_async1 = $cincopa_async == '' || $cincopa_async == 'plain' ? $tpl_checked : '';
 
-	$disp_opengraph = isset($cincopa_opengraph) && ($cincopa_opengraph == 1) ? $tpl_checked : '';
+	$disp_opengraph = ( $cincopa_opengraph == 1) ? $tpl_checked : '';
 
 ?>
 	<div class="wrap">
