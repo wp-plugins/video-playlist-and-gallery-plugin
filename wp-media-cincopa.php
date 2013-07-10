@@ -4,12 +4,12 @@ Plugin Name: Post video players, slideshow albums, photo galleries and music / p
 Plugin URI: http://www.cincopa.com/media-platform/wordpress-plugin.aspx
 Description: Post rich videos and photos galleries from your cincopa account
 Author: Cincopa 
-Version: 1.128
+Version: 1.129
 */
 
 function _cpmp_plugin_ver()
 {
-	return 'wp1.128';
+	return 'wp1.129';
 }
 
 function _cpmp_afc()
@@ -65,9 +65,6 @@ function _cpmp_WpMediaCincopa_init() // constructor
       
 	// check auth enabled
 	//if(!function_exists('curl_init') && !ini_get('allow_url_fopen')) {}
-	
-	// #AB#
-	_cpmp_registerScripts();
 }
 
 function _cpmp_media_menu($tabs) {
@@ -110,12 +107,12 @@ function _cpmp_addMediaButton($admin = true)
 	$media_cincopa_title = __('Add Cincopa Media', 'wp-media-cincopa');
 	?>
 	<div id="cincopa_button">
-		<a onClick="cincopa_launch_popup()" class="insert-media " data-editor="content" title="Add Media">
-			<div class="first">
+		<a onClick="javascript:cincopa_launch_popup();" class="insert-media " data-editor="content" title="Add Media">
+			<div class="first" onClick="javascript:cincopa_launch_popup();">
 				<img src="<?php echo _cpmp_pluginURI(); ?>/media-cincopa.gif" alt="<?php echo $media_cincopa_title; ?>" />
 			</div>
 		</a>
-		<div class="last cincopa-show-gallery" id="cincopa_show_button"></div>
+		<div class="last cincopa-show-gallery" id="cincopa_show_button"<?php if (is_rtl()) echo ' style="border-right:1px solid #bbb;"'; ?>></div>
 	</div>
 	<div class="cincopa-gallery-block"><img src="<?php echo _cpmp_pluginURI(); ?>/loading.gif"></div>
 	<?php
@@ -391,14 +388,20 @@ function _cpmp_opengraph_meta_tags() {
 // #AB# dropdown menu functions
 /////////////////////////////////
 
-function _cpmp_registerScripts() {
+// register js and style on initialization
+add_action('init', '_cpmp_register_script');
+function _cpmp_register_script() {
+	
 	if ( is_admin() ) {
 		// add styles for dropdown 
-		wp_enqueue_style( 'cincopa-ext', _cpmp_pluginURI() . '/css.cincopa.css', array(), '20130425.4' );
+		wp_register_style( 'cincopa-style', plugins_url('css.cincopa.css', __FILE__), false, '20130425.4', 'all' );
 		// add js for dropdown 
-		wp_enqueue_script( 'cincopa-ext', _cpmp_pluginURI() . '/js.cincopa.js', array(), '20130425.4' );
+		wp_register_script( 'cincopa-script', plugins_url('js.cincopa.js', __FILE__), array(), '20130425.4' );
+		
+		wp_enqueue_script( 'cincopa-script' );
+		wp_enqueue_style( 'cincopa-style' );
+		
 	}
-	
 }
 
 /////////////////////////////////
@@ -819,6 +822,9 @@ function cincopa_mediaDefault_script()
 
 			function cincopa_check_popup()
 			{
+				if (jQuery(".media-menu-item:contains('Cincopa')").closest('.supports-drag-drop').css('display') == 'none') 
+					return;
+				
 				if (jQuery(".media-menu-item:contains('Cincopa')").length > 0)
 				{
 					jQuery(".media-menu-item:contains('Cincopa')")[0].click();
