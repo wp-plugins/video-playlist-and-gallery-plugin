@@ -1,8 +1,8 @@
 === Post video players, slideshow albums, photo galleries and music / podcast playlist ===
 Contributors: nicashmu
-Tags: cincopa, buddypress, photos, flash, flv, slideshow, images, amazon, gallery, media, cooliris, admin, post, WPtouch, photo-albums, pictures, plugin, widget, photo, picture, s3, music, playlists, playlist, sidebar, ajax, video, vidavee, iphone, cms, ipod, smooth gallery, nextgen, javascript, embed, menus, analytics, media library, itunes, mu, podpress, lightbox, podpress, flowplayer, jw player, comments, twitter, page, google, links, image
+Tags: cincopa, responsive, photos, html5, flash, flv, slideshow, images, amazon, gallery, media, cooliris, admin, post, WPtouch, photo-albums, pictures, plugin, widget, photo, picture, s3, music, playlists, playlist, sidebar, ajax, video, vidavee, iphone, cms, ipod, smooth gallery, nextgen, javascript, embed, menus, analytics, media library, itunes, mu, podpress, lightbox, podpress, flowplayer, jw player, comments, twitter, page, google, links, image
 Requires at least: 2.0.2
-Tested up to: 3.5
+Tested up to: 3.6.2
 
 Post your videos, photo galleries/flash slideshows, music and playlists easily and in seconds.
 
@@ -10,7 +10,9 @@ Post your videos, photo galleries/flash slideshows, music and playlists easily a
 
 No need for multiple plugins for your WordPress media. Cincopa is **The only plugin you need for all your media needs**. Use Cincopa to easily add videos, photo galleries, slideshows, music and playlists and much more. Enjoy more than 40 designed skins for slideshows, video players, Cooliris, Lightbox and many more.
 
-* **HASSLE-FREE** WordPress media support for your site, include **Videos**, **Slideshows**, **Image Galleries**, **Audio playlists and podcasts**.
+* **HASSLE-FREE** WordPress media support for your site, include **Videos**, **Slideshows**, **Image Galleries**, **Audio playlists and podcasts**. 
+
+* **Responsive design and HTML5** to ensure compatibility with mobile phones, tablets as well as desktops. Your audience is mobile more than ever, our technology will make sure that they can access your content anywhere and any time.
 
 * **Fully Managed** to ensure high speed, scalability, security and reliability of your media. [Read more](http://www.cincopa.com/media-platform/services/what-is-a-cdn)
 

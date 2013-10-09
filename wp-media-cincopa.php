@@ -4,12 +4,12 @@ Plugin Name: Post video players, slideshow albums, photo galleries and music / p
 Plugin URI: http://www.cincopa.com/media-platform/wordpress-plugin.aspx
 Description: Post rich videos and photos galleries from your cincopa account
 Author: Cincopa 
-Version: 1.129
+Version: 1.130
 */
 
 function _cpmp_plugin_ver()
 {
-	return 'wp1.129';
+	return 'wp1.130';
 }
 
 function _cpmp_afc()
@@ -245,6 +245,8 @@ $opengraph_meta = array();
 function _cpmp_plugin($content) {
 	global $opengraph_meta;
 	
+	$cincopa_rss = get_site_option('CincopaRss');
+
 	$cincopa_async = get_site_option('CincopaAsync');
 	if (strpos($_SERVER['REQUEST_URI'], 'tcapc=true'))
 		$cincopa_async = 'async';
@@ -257,8 +259,18 @@ function _cpmp_plugin($content) {
 	$cincopa_excerpt_rt = get_site_option('CincopaExcerpt');
 	if ($cincopa_excerpt_rt == 'remove' && (is_search() || is_category() || is_archive() || is_home()))
 		return preg_replace(CINCOPA_REGEXP, '', $content);
-	else if ( is_feed() )
-		return (preg_replace_callback(CINCOPA_REGEXP, '_cpmp_feed_plugin_callback', $content));
+	else if ( is_feed() ) {
+		if ($cincopa_rss == 'full') {
+			if ($cincopa_async == 'async') {
+				return (preg_replace_callback(CINCOPA_REGEXP, '_cpmp_async_plugin_callback', $content));
+			} else {
+				preg_replace_callback(CINCOPA_REGEXP, '_cpmp_opengraph_meta_tags_callback', $content);
+				return (preg_replace_callback(CINCOPA_REGEXP, '_cpmp_plugin_callback', $content));
+			}
+		} else {
+			return (preg_replace_callback(CINCOPA_REGEXP, '_cpmp_feed_plugin_callback', $content));
+		}
+	}
 	else if ($cincopa_async == 'async')
 		return (preg_replace_callback(CINCOPA_REGEXP, '_cpmp_async_plugin_callback', $content));
 	else {
@@ -270,7 +282,24 @@ function _cpmp_plugin($content) {
 
 function _cpmp_plugin_rss($content)
 {
-	return (preg_replace_callback(CINCOPA_REGEXP, '_cpmp_feed_plugin_callback', $content));
+	$cincopa_rss = get_site_option('CincopaRss');
+
+	$cincopa_async = get_site_option('CincopaAsync');
+	if (strpos($_SERVER['REQUEST_URI'], 'tcapc=true'))
+		$cincopa_async = 'async';
+	else if (strpos($_SERVER['REQUEST_URI'], 'tcapc=false'))
+		$cincopa_async = 'plain';
+	
+	if ($cincopa_rss == 'full') {
+		if ($cincopa_async == 'async') {
+			return (preg_replace_callback(CINCOPA_REGEXP, '_cpmp_async_plugin_callback', $content));
+		} else {
+			preg_replace_callback(CINCOPA_REGEXP, '_cpmp_opengraph_meta_tags_callback', $content);
+			return (preg_replace_callback(CINCOPA_REGEXP, '_cpmp_plugin_callback', $content));
+		}
+	} else {
+		return (preg_replace_callback(CINCOPA_REGEXP, '_cpmp_feed_plugin_callback', $content));
+	}
 }
 
 //add_shortcode('cincopa', 'cincopa_plugin_shortcode');
@@ -471,6 +500,7 @@ function _cpmp_mt_options_page()
 	$cincopa_afc = get_site_option('CincopaAFC');
 	$cincopa_excerpt = get_site_option('CincopaExcerpt');
 	$cincopa_async = get_site_option('CincopaAsync');
+	$cincopa_rss = get_site_option('CincopaRss');
 	$cincopa_opengraph = get_site_option('CincopaOpenGraph');
 	if ( $cincopa_opengraph === false ) {
 		// enabled by default
@@ -492,6 +522,12 @@ function _cpmp_mt_options_page()
 			{
 				$cincopa_async = $_POST['asyncRel'];
 				update_site_option('CincopaAsync', $cincopa_async);			
+			}
+
+			if (isset($_POST['rssRel']))
+			{
+				$cincopa_rss = $_POST['rssRel'];
+				update_site_option('CincopaRss', $cincopa_rss);
 			}
 		}
 
@@ -522,6 +558,9 @@ function _cpmp_mt_options_page()
 
 	$disp_async2 = $cincopa_async == 'async' ? $tpl_checked : '';
 	$disp_async1 = $cincopa_async == '' || $cincopa_async == 'plain' ? $tpl_checked : '';
+
+	$disp_rss2 = $cincopa_rss == 'full' ? $tpl_checked : '';
+	$disp_rss1 = $cincopa_rss == '' || $cincopa_rss == 'thumb' ? $tpl_checked : '';
 
 	$disp_opengraph = ( $cincopa_opengraph == 1) ? $tpl_checked : '';
 
@@ -614,6 +653,25 @@ if (_cpmp_isAdmin())
 											<br/>
 											<input type="radio" <?php echo $disp_async2; ?> id="asyncCustomization1" name="asyncRel" value="async"/>
 											<label for="asyncCustomization1">Advanced Async </label>
+											<br/>
+
+
+										</td>
+									</tr>
+
+									<tr style="width:100%;">
+										<th valign="top" scrope="row">
+											<label for="cincoparss">
+												RSS handling (<a target="_blank" href="http://help.cincopa.com/entries/448859-wordpress-plugin-settings-page#rsshandling">what?</a>):
+											</label>
+										</th>
+										<td valign="top">
+
+											<input type="radio" <?php echo $disp_rss1; ?> id="rss0" name="rssRel" value="thumb"/>
+											<label for="rss0">Show thumbnail</label>
+											<br/>
+											<input type="radio" <?php echo $disp_rss2; ?> id="rss1" name="rssRel" value="full"/>
+											<label for="rss1">Full gallery</label>
 											<br/>
 
 
