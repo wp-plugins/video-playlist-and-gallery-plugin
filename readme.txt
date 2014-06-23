@@ -1,8 +1,8 @@
 === Post video players, slideshow albums, photo galleries and music / podcast playlist ===
 Contributors: nicashmu
-Tags: cincopa, responsive, photos, html5, flash, flv, slideshow, images, amazon, gallery, media, cooliris, admin, post, WPtouch, photo-albums, pictures, plugin, widget, photo, picture, s3, music, playlists, playlist, sidebar, ajax, video, vidavee, iphone, cms, ipod, smooth gallery, nextgen, javascript, embed, menus, analytics, media library, itunes, mu, podpress, lightbox, podpress, flowplayer, jw player, comments, twitter, page, google, links, image
+Tags: cincopa, responsive, photos, html5, flash, flv, slideshow, images, amazon, gallery, media, cooliris, admin, post, WPtouch, photo-albums, pictures, plugin, widget, photo, picture, video hosting, s3, music, playlists, playlist, sidebar, ajax, video, vidavee, iphone, cms, ipod, smooth gallery, nextgen, javascript, embed, menus, analytics, media library, itunes, mu, podpress, lightbox, podpress, flowplayer, jw player, comments, twitter, page, google, links, image
 Requires at least: 2.0.2
-Tested up to: 3.8.1
+Tested up to: 3.9.1
 
 Post your videos, photo galleries/flash slideshows, music and playlists easily and in seconds.
 
@@ -20,6 +20,9 @@ No need for multiple plugins for your WordPress media. Cincopa is **The only plu
 
 
 Read more about [Cincopa WordPress Media Plugin](http://www.cincopa.com/media-platform/wordpress-plugin.aspx)
+
+
+[youtube http://www.youtube.com/watch?v=x-M4YDm6y1Y]
 
 
 = Features =
@@ -53,8 +56,6 @@ Read more about [Cincopa WordPress Media Plugin](http://www.cincopa.com/media-pl
 * Support other CMS systems and public web sites
 * Post to your blog from anywhere and even if your videos are at home on your PC
 * The plugin is FREE, we do offer a [pro account](http://www.cincopa.com/cincopamanager/paypal/plans.aspx) with even more options.
-
-[youtube http://www.youtube.com/watch?v=Ih59UxT9hag]
 
 
 Thousands of site are already using Cincopa, [Start now for free](http://downloads.wordpress.org/plugin/video-playlist-and-gallery-plugin.zip) and add media to your WordPress site in seconds.
