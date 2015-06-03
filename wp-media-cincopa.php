@@ -24,7 +24,7 @@ function _cpmp_afc()
 
 function _cpmp_url()
 {
-	return 'http://www.cincopa.com';
+	return '//www.cincopa.com';
 }
 
 if (strpos($_SERVER['REQUEST_URI'], 'media-upload.php') && strpos($_SERVER['REQUEST_URI'], '&type=cincopa') && !strpos($_SERVER['REQUEST_URI'], '&wrt='))
@@ -49,7 +49,16 @@ function _cpmp_selfURL()
 
 function _cpmp_pluginURI()
 {
-	return get_option('siteurl').'/wp-content/plugins/'.dirname(plugin_basename(__FILE__));
+	$s = empty ( $_SERVER ["HTTPS"] ) ? '' : ($_SERVER ["HTTPS"] == "on") ? "s" : "";
+
+	$protocol =  strtolower ( $_SERVER ["SERVER_PROTOCOL"] );
+	$protocol =  substr($protocol, 0, strpos($protocol, "/"));
+	$protocol .= $s;
+
+	$url = site_url( '', $protocol );
+	//echo 'url = ' . $url;
+	return $url . '/wp-content/plugins/'.dirname(plugin_basename(__FILE__));
+	//return get_option('siteurl').'/wp-content/plugins/'.dirname(plugin_basename(__FILE__));
 }
 
 function _cpmp_WpMediaCincopa_init() // constructor
@@ -182,7 +191,7 @@ function _cpmp_plugin_callback($match)
 	$ret = sprintf( '<!-- %s -->', $match[0] );
 	
 	$ret .= '
-<!-- Cincopa WordPress plugin '._cpmp_plugin_ver().': http://www.cincopa.com/media-platform/wordpress-plugin.aspx -->
+<!-- Cincopa WordPress plugin '._cpmp_plugin_ver().': //www.cincopa.com/media-platform/wordpress-plugin.aspx -->
 <div id="cp_widget_'.$uni.'"><img src="//www.cincopa.com/media-platform/runtime/loading.gif" style="border:0;" alt="Cincopa WordPress plugin" /></div>
 <script src="//www.cincopa.com/media-platform/runtime/libasync.js" type="text/javascript"></script>
 <script type="text/javascript">
@@ -202,7 +211,7 @@ function _cpmp_async_plugin_callback($match)
 	$uni = uniqid('');
 
 	$ret = '
-<!-- Cincopa WordPress plugin '._cpmp_plugin_ver().' (async engine): http://www.cincopa.com/media-platform/wordpress-plugin.aspx -->
+<!-- Cincopa WordPress plugin '._cpmp_plugin_ver().' (async engine): //www.cincopa.com/media-platform/wordpress-plugin.aspx -->
 
 <div id="cp_widget_'.$uni.'"><img src="//www.cincopa.com/media-platform/runtime/loading.gif" style="border:0;" alt="Cincopa WordPress plugin" /></div>
 
@@ -235,7 +244,7 @@ _cpmp.push(cpo);
 
 function _cpmp_feed_plugin_callback($match)
 {
-	$ret = '<img style="border:0;" src="http://www.cincopa.com/media-platform/api/thumb.aspx?fid='.urlencode($match[1]).'&size=large" />';
+	$ret = '<img style="border:0;" src="//www.cincopa.com/media-platform/api/thumb.aspx?fid='.urlencode($match[1]).'&size=large" />';
 
 	return $ret;
 }
@@ -320,7 +329,7 @@ add_action('admin_menu', '_cpmp_mt_add_pages');
 // register CincopaWidget widget
 add_action('widgets_init', create_function('', 'return register_widget("CincopaWidget");'));
 
-wp_oembed_add_provider( 'http://www.cincopa.com/*', 'http://www.cincopa.com/media-platform/oembed.aspx' );
+wp_oembed_add_provider( '//www.cincopa.com/*', '//www.cincopa.com/media-platform/oembed.aspx' );
 
 if (get_site_option('cincopa_welcome_notice') != _cpmp_plugin_ver())
 	add_action( 'admin_notices', '_cpmp_activation_notice' );
@@ -364,7 +373,7 @@ function _cpmp_get_opengraph_meta_list() {
  */
 function _cpmp_opengraph_add_prefix( $output ) {
   $prefixes = array(
-    'og' => 'http://ogp.me/ns#'
+    'og' => '//ogp.me/ns#'
   );
   $prefixes = apply_filters('_cpmp_opengraph_prefixes', $prefixes);
 
@@ -389,8 +398,8 @@ function _cpmp_opengraph_meta_tags_callback( $match ) {
 		return '';
 	
 	$opengraph_meta_item = 
-		'<meta property="og:image" content="http://www.cincopa.com/media-platform/api/thumb_open.aspx?fid=' . urlencode(trim($match[1])) . '&size=large">' . "\n" .
-		'<meta name="twitter:image" content="http://www.cincopa.com/media-platform/api/thumb_open.aspx?fid=' . urlencode(trim($match[1])) . '&size=large">' . "\n";
+		'<meta property="og:image" content="//www.cincopa.com/media-platform/api/thumb_open.aspx?fid=' . urlencode(trim($match[1])) . '&size=large">' . "\n" .
+		'<meta name="twitter:image" content="//www.cincopa.com/media-platform/api/thumb_open.aspx?fid=' . urlencode(trim($match[1])) . '&size=large">' . "\n";
 
 	$opengraph_meta[trim($match[1])] = $opengraph_meta_item;
 	
@@ -446,7 +455,7 @@ function _cpmp_dashboard_content()
 {
 
         
-	echo "<iframe src='http://www.cincopa.com/media-platform/wordpress-dashboard-content.aspx?ver="._cpmp_plugin_ver()._cpmp_afc()."&src=".urlencode(_cpmp_selfURL())."' width='100%' height='370px' scrolling='no'></iframe>";
+	echo "<iframe src='//www.cincopa.com/media-platform/wordpress-dashboard-content.aspx?ver="._cpmp_plugin_ver()._cpmp_afc()."&src=".urlencode(_cpmp_selfURL())."' width='100%' height='370px' scrolling='no'></iframe>";
 
 }
 
@@ -584,7 +593,7 @@ function _cpmp_mt_options_page()
 									<tr style="width:100%;">
 										<th valign="top" scrope="row">
 											<label for="cincopaafc">
-												Excerpt Handling (<a target="_blank" href="http://help.cincopa.com/entries/448859-wordpress-plugin-settings-page#excerpt">what?</a>):
+												Excerpt Handling (<a target="_blank" href="//help.cincopa.com/entries/448859-wordpress-plugin-settings-page#excerpt">what?</a>):
 											</label>
 										</th>
 										<td valign="top">
@@ -608,7 +617,7 @@ function _cpmp_mt_options_page()
 									<tr>
 										<th valign="top" scrope="row">
 											<label for="open_graph">
-												Use Open Graph Tags? (<a target="_blank" href="http://help.cincopa.com/entries/448859-wordpress-plugin-settings-page#opengraph">what?</a>):
+												Use Open Graph Tags? (<a target="_blank" href="//help.cincopa.com/entries/448859-wordpress-plugin-settings-page#opengraph">what?</a>):
 											</label>
 										</th>
 										<td valign="top">
@@ -628,7 +637,7 @@ if (_cpmp_isAdmin())
 									<tr style="width:100%;">
 										<th valign="top" scrope="row">
 											<label for="cincopaafc">
-												Cincopa AFC (<a target="_blank" href="http://help.cincopa.com/entries/448859-wordpress-plugin-settings-page#afc">what?</a>):
+												Cincopa AFC (<a target="_blank" href="//help.cincopa.com/entries/448859-wordpress-plugin-settings-page#afc">what?</a>):
 											</label>
 										</th>
 										<td valign="top">
@@ -643,7 +652,7 @@ if (_cpmp_isAdmin())
 									<tr style="width:100%;">
 										<th valign="top" scrope="row">
 											<label for="cincopaasync">
-												Async Engine (<a target="_blank" href="http://help.cincopa.com/entries/448859-wordpress-plugin-settings-page#async">what?</a>):
+												Async Engine (<a target="_blank" href="//help.cincopa.com/entries/448859-wordpress-plugin-settings-page#async">what?</a>):
 											</label>
 										</th>
 										<td valign="top">
@@ -662,7 +671,7 @@ if (_cpmp_isAdmin())
 									<tr style="width:100%;">
 										<th valign="top" scrope="row">
 											<label for="cincoparss">
-												RSS handling (<a target="_blank" href="http://help.cincopa.com/entries/448859-wordpress-plugin-settings-page#rsshandling">what?</a>):
+												RSS handling (<a target="_blank" href="//help.cincopa.com/entries/448859-wordpress-plugin-settings-page#rsshandling">what?</a>):
 											</label>
 										</th>
 										<td valign="top">
@@ -720,27 +729,27 @@ function _cpmp_mt_manage_page() {
 */
 
 function _cpmp_mt_toplevel_page() {
-    echo "<iframe src='http://www.cincopa.com/media-platform/start.aspx?ver="._cpmp_plugin_ver()._cpmp_afc()."&src=".urlencode(_cpmp_selfURL())."' width='98%' height='2000px'></iframe>";
+    echo "<iframe src='//www.cincopa.com/media-platform/start.aspx?ver="._cpmp_plugin_ver()._cpmp_afc()."&src=".urlencode(_cpmp_selfURL())."' width='98%' height='2000px'></iframe>";
 }
 
 function _cpmp_mt_sublevel_create() {
-    echo "<iframe src='http://www.cincopa.com/media-platform/wizard_name.aspx?ver="._cpmp_plugin_ver()._cpmp_afc()."&src=".urlencode(_cpmp_selfURL())."' width='98%' height='2000px'></iframe>";
+    echo "<iframe src='//www.cincopa.com/media-platform/wizard_name.aspx?ver="._cpmp_plugin_ver()._cpmp_afc()."&src=".urlencode(_cpmp_selfURL())."' width='98%' height='2000px'></iframe>";
 }
 
 function _cpmp_mt_sublevel_monitor() {
-    echo "<iframe src='http://www.cincopa.com/media-platform/wizard_edit.aspx?ver="._cpmp_plugin_ver()._cpmp_afc()."&src=".urlencode(_cpmp_selfURL())."' width='98%' height='2000px'></iframe>";
+    echo "<iframe src='//www.cincopa.com/media-platform/wizard_edit.aspx?ver="._cpmp_plugin_ver()._cpmp_afc()."&src=".urlencode(_cpmp_selfURL())."' width='98%' height='2000px'></iframe>";
 }
 
 function _cpmp_mt_sublevel_library() {
-    echo "<iframe src='http://www.cincopa.com/media-platform/wizard2/library.aspx?ver="._cpmp_plugin_ver()._cpmp_afc()."&src=".urlencode(_cpmp_selfURL())."' width='98%' height='2000px'></iframe>";
+    echo "<iframe src='//www.cincopa.com/media-platform/wizard2/library.aspx?ver="._cpmp_plugin_ver()._cpmp_afc()."&src=".urlencode(_cpmp_selfURL())."' width='98%' height='2000px'></iframe>";
 }
 
 function _cpmp_mt_sublevel_myaccount() {
-    echo "<iframe src='http://www.cincopa.com/cincopaManager/ManageAccount.aspx?ver="._cpmp_plugin_ver()._cpmp_afc()."&src=".urlencode(_cpmp_selfURL())."' width='98%' height='2000px'></iframe>";
+    echo "<iframe src='//www.cincopa.com/cincopaManager/ManageAccount.aspx?ver="._cpmp_plugin_ver()._cpmp_afc()."&src=".urlencode(_cpmp_selfURL())."' width='98%' height='2000px'></iframe>";
 }
 
 function _cpmp_mt_sublevel_forum() {
-    echo "<iframe src='http://www.cincopa.com/redirect_to_help.aspx' width='98%' height='2000px'></iframe>";
+    echo "<iframe src='//www.cincopa.com/redirect_to_help.aspx' width='98%' height='2000px'></iframe>";
 }
 
 
@@ -779,7 +788,7 @@ if (!class_exists('CincopaWidget')) {
 					?>
 	<p>
 		<label for=""
-			<?php echo $this->get_field_id('galleryid'); ?>"><?php _e('Gallery ID:'); ?> <a target="_blank" href="http://help.cincopa.com/entries/405593-how-do-i-add-a-gallery-to-my-wordpress-sidebar">what?</a> <input class="widefat" id=""<?php echo $this->get_field_id('galleryid'); ?>" name="<?php echo $this->get_field_name('galleryid'); ?>" type="text" value="<?php echo $galleryid; ?>" />
+			<?php echo $this->get_field_id('galleryid'); ?>"><?php _e('Gallery ID:'); ?> <a target="_blank" href="//help.cincopa.com/entries/405593-how-do-i-add-a-gallery-to-my-wordpress-sidebar">what?</a> <input class="widefat" id=""<?php echo $this->get_field_id('galleryid'); ?>" name="<?php echo $this->get_field_name('galleryid'); ?>" type="text" value="<?php echo $galleryid; ?>" />
 		</label>
 	</p>
 	<?php 
@@ -847,7 +856,7 @@ function _cpmp_activation_notice()
 
 <input type="button" class="button" value="Hide this message" onclick="document.location.href = 'options-general.php?page=cincopaoptions&amp;hide_note=welcome_notice';" />
 
-<input type="button" class="button" value="Video Tutorial" onclick="window.open('http://help.cincopa.com/entries/488838-how-to-use-the-wordpress-plugin');" />
+<input type="button" class="button" value="Video Tutorial" onclick="window.open('//help.cincopa.com/entries/488838-how-to-use-the-wordpress-plugin');" />
 
 				</p>
 
@@ -859,7 +868,7 @@ function _cpmp_activation_notice()
 	if (get_site_option('cincopa_installed') != 'true')
 	{
 		update_site_option('cincopa_installed', 'true');
-		echo "<img src='http://goo.gl/HqSz' width=0 height=0 />";
+		echo "<img src='//goo.gl/HqSz' width=0 height=0 />";
 	}
 
 }

@@ -2,7 +2,7 @@
 Contributors: nicashmu
 Tags: cincopa, responsive, photos, html5, flash, flv, slideshow, images, amazon, gallery, media, cooliris, admin, post, WPtouch, photo-albums, pictures, plugin, widget, photo, picture, video hosting, s3, music, playlists, playlist, sidebar, ajax, video, vidavee, iphone, cms, ipod, smooth gallery, nextgen, javascript, embed, menus, analytics, media library, itunes, mu, podpress, lightbox, podpress, flowplayer, jw player, comments, twitter, page, google, links, image
 Requires at least: 2.0.2
-Tested up to: 3.9.1
+Tested up to: 4.2.2
 
 Post your videos, photo galleries/flash slideshows, music and playlists easily and in seconds.
 
@@ -14,20 +14,20 @@ No need for multiple plugins for your WordPress media. Cincopa is **The only plu
 
 * **Responsive design and HTML5** to ensure compatibility with mobile phones, tablets as well as desktops. Your audience is mobile more than ever, our technology will make sure that they can access your content anywhere and any time.
 
-* **Fully Managed** to ensure high speed, scalability, security and reliability of your media. [Read more](http://www.cincopa.com/media-platform/services/what-is-a-cdn)
+* **Fully Managed** to ensure high speed, scalability, security and reliability of your media. [Read more](//www.cincopa.com/media-platform/services/what-is-a-cdn)
 
-* **Expert WordPress Support** - full [technical support]( http://help.cincopa.com/home), many [tutorials](http://help.cincopa.com/categories/9559-media-platform-guides-tutorials) and [video tutorials](http://help.cincopa.com/forums/376513-video-tutorials) to get you started.
-
-
-Read more about [Cincopa WordPress Media Plugin](http://www.cincopa.com/media-platform/wordpress-plugin.aspx)
+* **Expert WordPress Support** - full [technical support](//help.cincopa.com/home), many [tutorials](//help.cincopa.com/categories/9559-media-platform-guides-tutorials) and [video tutorials](//help.cincopa.com/forums/376513-video-tutorials) to get you started.
 
 
-[youtube http://www.youtube.com/watch?v=x-M4YDm6y1Y]
+Read more about [Cincopa WordPress Media Plugin](//www.cincopa.com/media-platform/wordpress-plugin.aspx)
+
+
+[youtube https://www.youtube.com/watch?v=rgdK2sHpxnA]
 
 
 = Features =
 
-* **[44 skins and more](http://www.cincopa.com/media-platform/skins)** - slideshows, video players, playlists, flash, full-screen, Cooliris, lightbox, wedding skins and many more
+* **[more than 100 skins](//www.cincopa.com/media-platform/skins)** - slideshows, video players, playlists, flash, full-screen, Cooliris, lightbox, wedding skins and many more
 * Many customization options: size, colors, text and more
 * Simple media management directly from your WordPress dashboard
 * Automatic **resizing of photos**
@@ -55,13 +55,13 @@ Read more about [Cincopa WordPress Media Plugin](http://www.cincopa.com/media-pl
 * Google analytics Tracking Enabled
 * Support other CMS systems and public web sites
 * Post to your blog from anywhere and even if your videos are at home on your PC
-* The plugin is FREE, we do offer a [pro account](http://www.cincopa.com/cincopamanager/paypal/plans.aspx) with even more options.
+* The plugin is FREE, we do offer a [pro account](//www.cincopa.com/cincopamanager/paypal/plans.aspx) with even more options.
 
 
-Thousands of site are already using Cincopa, [Start now for free](http://downloads.wordpress.org/plugin/video-playlist-and-gallery-plugin.zip) and add media to your WordPress site in seconds.
+Thousands of site are already using Cincopa, [Start now for free](//downloads.wordpress.org/plugin/video-playlist-and-gallery-plugin.zip) and add media to your WordPress site in seconds.
 
 
-Get more information about [Cincopa WordPress Media Plugin](http://www.cincopa.com/media-platform/wordpress-plugin.aspx) and see some examples.
+Get more information about [Cincopa WordPress Media Plugin](//www.cincopa.com/media-platform/wordpress-plugin.aspx) and see some examples.
 
 For comments, questions and support use this email [support@cincopa.com](mailto:support@cincopa.com)
 
@@ -77,7 +77,7 @@ Ideal multimedia solution for BuddyPress and mu because each user gets his own p
 
 <li>Log into your WordPress admin panel</li>
 <li>Activate the plugin (named 'WordPress Cincopa Plugin') through the &#8216;Plugins&#8217; menu in WordPress (if you are upgrading from an earlier version, make sure to de-activate and re-activate the plugin so that all options are updated)</li>
-<li>Go to your post/page and click on the C icon <img class="size-medium wp-image-14" style="vertical-align: top" src="http://wpcincopaplugin.ronica.net/files/2008/09/cicon.png" alt="" width="216" height="31" /></li>
+<li>Go to your post/page and click on the C icon.</li>
 </ol>
 
 == Frequently Asked Questions ==
@@ -117,15 +117,12 @@ If you are using one of those low cost shared hosting solution then you better l
 
 == Screenshots ==
 
-1. Gallery with Photos with lightbox
-2. Smooth Gallery with or without menu
-3. Video Players - Blue Series
-4. Podcast and Music players
-5. Tutorial Based Video Players
-6. Simple Flash Gallery
-7. LightBox with Javascript
-8. Video Players - Gray Series
-9. Slideshow Player with Detailed Description
-10. Launch Cincopa by Clicking the C icon above the Text box
-11. Cincopa Menu in the Dashboard
-12. Cooliris with Videos and Photos
+1. Audio mobile
+2. Audio playlist
+3. Image gallery
+4. Image list pinterest
+5. Image list preview
+6. Ligthbox
+7. Start page
+8. Video gallery
+9. Video playlist
