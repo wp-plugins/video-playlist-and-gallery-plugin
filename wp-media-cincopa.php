@@ -4,12 +4,12 @@ Plugin Name: Post video players, slideshow albums, photo galleries and music / p
 Plugin URI: http://www.cincopa.com/media-platform/wordpress-plugin.aspx
 Description: Post rich videos and photos galleries from your cincopa account
 Author: Cincopa 
-Version: 1.135
+Version: 1.136
 */
 
 function _cpmp_plugin_ver()
 {
-	return 'wp1.135';
+	return 'wp1.136';
 }
 
 function _cpmp_afc()
@@ -461,32 +461,43 @@ function _cpmp_dashboard_content()
 
 
 
+/*function changeUrl()
+{
+    $pageURL = $_SERVER['QUERY_STRING'];
+    
+    if( $pageURL == 'page=sub-page4' )
+    {
+        //header ('location: http://help.cincopa.com/home'); //in same tab
+    }
+}
+add_action( 'admin_menu', 'changeUrl' );*/
+
 // action function for above hook
 function _cpmp_mt_add_pages()
 {
 
 	// Add a new submenu under Options:
 	
-	add_options_page('Cincopa Options', 'Cincopa Options', 8, 'cincopaoptions', '_cpmp_mt_options_page');
+	add_options_page('Cincopa Options', 'Cincopa Options', 'edit_pages', 'cincopaoptions', '_cpmp_mt_options_page');
 
 
 	if(function_exists('add_menu_page'))
 	{
 		// Add a new top-level menu (ill-advised):
-		add_menu_page('Cincopa', 'Cincopa', 8, __FILE__, '_cpmp_mt_toplevel_page');
+		add_menu_page('Cincopa', 'Cincopa', 'edit_pages', __FILE__, '_cpmp_mt_toplevel_page');
 
 		// kill the first menu item that is usually the the identical to the menu itself
-		add_submenu_page(__FILE__, '', '', 8, __FILE__);
+		add_submenu_page(__FILE__, '', '', 'edit_pages', __FILE__);
 
-		add_submenu_page(__FILE__, 'Manage Galleries', 'Manage Galleries', 8, 'sub-page', '_cpmp_mt_sublevel_monitor');
+		add_submenu_page(__FILE__, 'Manage Galleries', 'Manage Galleries', 'edit_pages', 'sub-page', '_cpmp_mt_sublevel_monitor');
 
-		add_submenu_page(__FILE__, 'Media Library', 'Media Library', 8, 'sub-page1', '_cpmp_mt_sublevel_library');
+		add_submenu_page(__FILE__, 'Media Library', 'Media Library', 'edit_pages', 'sub-page1', '_cpmp_mt_sublevel_library');
 
-		add_submenu_page(__FILE__, 'Create Gallery', 'Create Gallery', 8, 'sub-page2', '_cpmp_mt_sublevel_create');
+		add_submenu_page(__FILE__, 'Create Gallery', 'Create Gallery', 'edit_pages', 'sub-page2', '_cpmp_mt_sublevel_create');
 
-		add_submenu_page(__FILE__, 'My Account', 'My Account', 8, 'sub-page3', '_cpmp_mt_sublevel_myaccount');
+		add_submenu_page(__FILE__, 'My Account', 'My Account', 'edit_pages', 'sub-page3', '_cpmp_mt_sublevel_myaccount');
 
-		add_submenu_page(__FILE__, 'Support Forum', 'Support Forum', 8, 'sub-page4', '_cpmp_mt_sublevel_forum');
+		add_submenu_page(__FILE__, 'Support Forum', 'Support Forum', 'edit_pages', 'sub-page4', '_cpmp_mt_sublevel_forum');
 	}
 }
 
@@ -729,27 +740,29 @@ function _cpmp_mt_manage_page() {
 */
 
 function _cpmp_mt_toplevel_page() {
-    echo "<iframe src='//www.cincopa.com/media-platform/start.aspx?ver="._cpmp_plugin_ver()._cpmp_afc()."&src=".urlencode(_cpmp_selfURL())."' width='98%' height='2000px'></iframe>";
+    echo "<div style='clear: both;'></div><iframe style='position: fixed; left: 165px;' src='//www.cincopa.com/media-platform/start.aspx?ver="._cpmp_plugin_ver()._cpmp_afc()."&src=".urlencode(_cpmp_selfURL())."' width='88%' height='100%'></iframe>";
 }
 
 function _cpmp_mt_sublevel_create() {
-    echo "<iframe src='//www.cincopa.com/media-platform/wizard_name.aspx?ver="._cpmp_plugin_ver()._cpmp_afc()."&src=".urlencode(_cpmp_selfURL())."' width='98%' height='2000px'></iframe>";
+    //echo "<iframe src='//www.cincopa.com/media-platform/wizard_name.aspx?ver="._cpmp_plugin_ver()._cpmp_afc()."&src=".urlencode(_cpmp_selfURL())."' width='98%' height='2000px'></iframe>";
+    echo "<div style='clear: both;'></div><iframe style='position: fixed; left: 165px;' src='//www.cincopa.com/media-platform/start.aspx?ver="._cpmp_plugin_ver()._cpmp_afc()."&src=".urlencode(_cpmp_selfURL())."' width='88%' height='100%'></iframe>";
 }
 
 function _cpmp_mt_sublevel_monitor() {
-    echo "<iframe src='//www.cincopa.com/media-platform/wizard_edit.aspx?ver="._cpmp_plugin_ver()._cpmp_afc()."&src=".urlencode(_cpmp_selfURL())."' width='98%' height='2000px'></iframe>";
+    echo "<div style='clear: both;'></div><iframe style='position: fixed; left: 165px;' src='//www.cincopa.com/media-platform/wizard_edit15?ver="._cpmp_plugin_ver()._cpmp_afc()."&src=".urlencode(_cpmp_selfURL())."' width='88%' height='100%'></iframe>";
 }
 
 function _cpmp_mt_sublevel_library() {
-    echo "<iframe src='//www.cincopa.com/media-platform/wizard2/library.aspx?ver="._cpmp_plugin_ver()._cpmp_afc()."&src=".urlencode(_cpmp_selfURL())."' width='98%' height='2000px'></iframe>";
+    echo "<div style='clear: both;'></div><iframe style='position: fixed; left: 165px;' src='//www.cincopa.com/media-platform/wizard2/library15?ver="._cpmp_plugin_ver()._cpmp_afc()."&src=".urlencode(_cpmp_selfURL())."' width='88%' height='100%'></iframe>";
 }
 
 function _cpmp_mt_sublevel_myaccount() {
-    echo "<iframe src='//www.cincopa.com/cincopaManager/ManageAccount.aspx?ver="._cpmp_plugin_ver()._cpmp_afc()."&src=".urlencode(_cpmp_selfURL())."' width='98%' height='2000px'></iframe>";
+    echo "<div style='clear: both;'></div><iframe style='position: fixed; left: 165px;' src='//www.cincopa.com/cincopaManager/manageaccount.aspx?ver="._cpmp_plugin_ver()._cpmp_afc()."&src=".urlencode(_cpmp_selfURL())."' width='88%' height='100%'></iframe>";
 }
 
 function _cpmp_mt_sublevel_forum() {
-    echo "<iframe src='//www.cincopa.com/redirect_to_help.aspx' width='98%' height='2000px'></iframe>";
+    //echo "<iframe src='//www.cincopa.com/redirect_to_help.aspx' width='98%' height='2000px'></iframe>";
+    echo "<div style='clear: both;'></div><iframe style='position: fixed; left: 165px;' src='//www.cincopa.com/learning-center' width='88%' height='100%'></iframe>";
 }
 
 
@@ -901,4 +914,4 @@ function cincopa_mediaDefault_script()
 
 		</script>
 	<?php
-} 
+}
