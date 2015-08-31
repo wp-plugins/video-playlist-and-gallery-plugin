@@ -1,6 +1,6 @@
 === Post video players, slideshow albums, photo galleries and music / podcast playlist ===
 Contributors: nicashmu
-Tags: cincopa, responsive, photos, html5, flash, flv, slideshow, images, amazon, gallery, media, cooliris, admin, post, WPtouch, photo-albums, pictures, plugin, widget, photo, picture, video hosting, s3, music, playlists, playlist, sidebar, ajax, video, vidavee, iphone, cms, ipod, smooth gallery, nextgen, javascript, embed, menus, analytics, media library, itunes, mu, podpress, lightbox, podpress, flowplayer, jw player, comments, twitter, page, google, links, image
+Tags: cincopa, responsive, photos, video, html5, slideshow, images, podcast, video portal, gallery, media, admin, post, WPtouch, photo-albums, pictures, widget, photo, picture, video hosting, s3, music, playlists, playlist, sidebar, ajax, video, vidavee, iphone, cms, ipod, smooth gallery, nextgen, javascript, embed, menus, analytics, media library, itunes, mu, podpress, lightbox, podpress, flowplayer, jw player, comments, twitter, page, google, links, image
 Requires at least: 2.0.2
 Tested up to: 4.2.2
 

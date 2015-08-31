@@ -4,22 +4,12 @@ Plugin Name: Post video players, slideshow albums, photo galleries and music / p
 Plugin URI: http://www.cincopa.com/media-platform/wordpress-plugin.aspx
 Description: Post rich videos and photos galleries from your cincopa account
 Author: Cincopa 
-Version: 1.136
+Version: 1.137
 */
 
 function _cpmp_plugin_ver()
 {
-	return 'wp1.136';
-}
-
-function _cpmp_afc()
-{
-	$cincopa_afc = get_site_option('CincopaAFC');
-	
-	if ($cincopa_afc == '')
-		return '';
-	
-	return '&afc='.$cincopa_afc;
+	return 'wp1.137';
 }
 
 function _cpmp_url()
@@ -29,7 +19,7 @@ function _cpmp_url()
 
 if (strpos($_SERVER['REQUEST_URI'], 'media-upload.php') && strpos($_SERVER['REQUEST_URI'], '&type=cincopa') && !strpos($_SERVER['REQUEST_URI'], '&wrt='))
 {
-	header('Location: '._cpmp_url().'/media-platform/start.aspx?ver='._cpmp_plugin_ver()._cpmp_afc().'&rdt='.urlencode(_cpmp_selfURL()));
+	header('Location: '._cpmp_url().'/media-platform/start.aspx?ver='._cpmp_plugin_ver().'&rdt='.urlencode(_cpmp_selfURL()));
 	exit;
 }
 
@@ -94,7 +84,7 @@ function media_cincopabox_process() {
     }
     media_upload_header();
     ?>
-    <iframe src="<?php echo _cpmp_url().'/media-platform/start.aspx?ver='._cpmp_plugin_ver()._cpmp_afc().'&rdt='.urlencode(_cpmp_selfURL()."&")?>&" width="100%" height="98%"></iframe>
+    <iframe src="<?php echo _cpmp_url().'/media-platform/start.aspx?ver='._cpmp_plugin_ver().'&rdt='.urlencode(_cpmp_selfURL()."&")?>&" width="100%" height="98%"></iframe>
     <?php
 }
 function cincopabox_menu_handle() {
@@ -455,7 +445,7 @@ function _cpmp_dashboard_content()
 {
 
         
-	echo "<iframe src='//www.cincopa.com/media-platform/wordpress-dashboard-content.aspx?ver="._cpmp_plugin_ver()._cpmp_afc()."&src=".urlencode(_cpmp_selfURL())."' width='100%' height='370px' scrolling='no'></iframe>";
+	echo "<iframe src='//www.cincopa.com/media-platform/wordpress-dashboard-content.aspx?ver="._cpmp_plugin_ver()."&src=".urlencode(_cpmp_selfURL())."' width='100%' height='370px' scrolling='no'></iframe>";
 
 }
 
@@ -475,11 +465,9 @@ add_action( 'admin_menu', 'changeUrl' );*/
 // action function for above hook
 function _cpmp_mt_add_pages()
 {
-
 	// Add a new submenu under Options:
 	
 	add_options_page('Cincopa Options', 'Cincopa Options', 'edit_pages', 'cincopaoptions', '_cpmp_mt_options_page');
-
 
 	if(function_exists('add_menu_page'))
 	{
@@ -488,15 +476,10 @@ function _cpmp_mt_add_pages()
 
 		// kill the first menu item that is usually the the identical to the menu itself
 		add_submenu_page(__FILE__, '', '', 'edit_pages', __FILE__);
-
 		add_submenu_page(__FILE__, 'Manage Galleries', 'Manage Galleries', 'edit_pages', 'sub-page', '_cpmp_mt_sublevel_monitor');
-
 		add_submenu_page(__FILE__, 'Media Library', 'Media Library', 'edit_pages', 'sub-page1', '_cpmp_mt_sublevel_library');
-
 		add_submenu_page(__FILE__, 'Create Gallery', 'Create Gallery', 'edit_pages', 'sub-page2', '_cpmp_mt_sublevel_create');
-
 		add_submenu_page(__FILE__, 'My Account', 'My Account', 'edit_pages', 'sub-page3', '_cpmp_mt_sublevel_myaccount');
-
 		add_submenu_page(__FILE__, 'Support Forum', 'Support Forum', 'edit_pages', 'sub-page4', '_cpmp_mt_sublevel_forum');
 	}
 }
@@ -516,8 +499,10 @@ function _cpmp_mt_options_page()
 		echo "<script type=\"text/javascript\">	document.location.href = '".$_SERVER['HTTP_REFERER']."'; </script>";
 		exit;
 	}
+	
+	if (empty($_COOKIE["csrfToken"]))
+		setcookie('csrfToken', md5(uniqid(rand(), true)));
 
-	$cincopa_afc = get_site_option('CincopaAFC');
 	$cincopa_excerpt = get_site_option('CincopaExcerpt');
 	$cincopa_async = get_site_option('CincopaAsync');
 	$cincopa_rss = get_site_option('CincopaRss');
@@ -530,13 +515,14 @@ function _cpmp_mt_options_page()
 	
 	if ( isset($_POST['submit']) )
 	{
+		if ($_POST['csrfToken'] != $_COOKIE['csrfToken'])
+		{
+			echo "nope";
+			exit();
+		}
+
 		if (_cpmp_isAdmin())
 		{
-			if (isset($_POST['cincopaafc']))
-			{
-				$cincopa_afc = $_POST['cincopaafc'];
-				update_site_option('CincopaAFC', $cincopa_afc);
-			}
 
 			if (isset($_POST['asyncRel']))
 			{
@@ -591,6 +577,7 @@ function _cpmp_mt_options_page()
 			<div class="metabox-holder">
 				<div class="meta-box-sortables">
 					<form action="" method="post" id="cincopa-conf">
+						<input type="hidden" name="csrfToken" value="<?php echo($_COOKIE["csrfToken"]) ?>" />
 						<div id="cincopa_settings" class="postbox">
 							<div class="handlediv" title="Click to toggle">
 								<br />
@@ -603,7 +590,7 @@ function _cpmp_mt_options_page()
 
 									<tr style="width:100%;">
 										<th valign="top" scrope="row">
-											<label for="cincopaafc">
+											<label>
 												Excerpt Handling (<a target="_blank" href="//help.cincopa.com/entries/448859-wordpress-plugin-settings-page#excerpt">what?</a>):
 											</label>
 										</th>
@@ -643,21 +630,6 @@ function _cpmp_mt_options_page()
 if (_cpmp_isAdmin())
 {
 ?>
-
-
-									<tr style="width:100%;">
-										<th valign="top" scrope="row">
-											<label for="cincopaafc">
-												Cincopa AFC (<a target="_blank" href="//help.cincopa.com/entries/448859-wordpress-plugin-settings-page#afc">what?</a>):
-											</label>
-										</th>
-										<td valign="top">
-											<input id="cincopaafc" name="cincopaafc" type="text" size="20" value="<?php echo $cincopa_afc; ?>"/>
-										</td>
-									</tr>
-
-
-
 
 
 									<tr style="width:100%;">
@@ -740,24 +712,24 @@ function _cpmp_mt_manage_page() {
 */
 
 function _cpmp_mt_toplevel_page() {
-    echo "<div style='clear: both;'></div><iframe style='position: fixed; left: 165px;' src='//www.cincopa.com/media-platform/start.aspx?ver="._cpmp_plugin_ver()._cpmp_afc()."&src=".urlencode(_cpmp_selfURL())."' width='88%' height='100%'></iframe>";
+    echo "<div style='clear: both;'></div><iframe style='position: fixed; left: 165px;' src='//www.cincopa.com/media-platform/start.aspx?ver="._cpmp_plugin_ver()."&src=".urlencode(_cpmp_selfURL())."' width='88%' height='100%'></iframe>";
 }
 
 function _cpmp_mt_sublevel_create() {
-    //echo "<iframe src='//www.cincopa.com/media-platform/wizard_name.aspx?ver="._cpmp_plugin_ver()._cpmp_afc()."&src=".urlencode(_cpmp_selfURL())."' width='98%' height='2000px'></iframe>";
-    echo "<div style='clear: both;'></div><iframe style='position: fixed; left: 165px;' src='//www.cincopa.com/media-platform/start.aspx?ver="._cpmp_plugin_ver()._cpmp_afc()."&src=".urlencode(_cpmp_selfURL())."' width='88%' height='100%'></iframe>";
+    //echo "<iframe src='//www.cincopa.com/media-platform/wizard_name.aspx?ver="._cpmp_plugin_ver()."&src=".urlencode(_cpmp_selfURL())."' width='98%' height='2000px'></iframe>";
+    echo "<div style='clear: both;'></div><iframe style='position: fixed; left: 165px;' src='//www.cincopa.com/media-platform/start.aspx?ver="._cpmp_plugin_ver()."&src=".urlencode(_cpmp_selfURL())."' width='88%' height='100%'></iframe>";
 }
 
 function _cpmp_mt_sublevel_monitor() {
-    echo "<div style='clear: both;'></div><iframe style='position: fixed; left: 165px;' src='//www.cincopa.com/media-platform/wizard_edit15?ver="._cpmp_plugin_ver()._cpmp_afc()."&src=".urlencode(_cpmp_selfURL())."' width='88%' height='100%'></iframe>";
+    echo "<div style='clear: both;'></div><iframe style='position: fixed; left: 165px;' src='//www.cincopa.com/media-platform/wizard_edit15?ver="._cpmp_plugin_ver()."&src=".urlencode(_cpmp_selfURL())."' width='88%' height='100%'></iframe>";
 }
 
 function _cpmp_mt_sublevel_library() {
-    echo "<div style='clear: both;'></div><iframe style='position: fixed; left: 165px;' src='//www.cincopa.com/media-platform/wizard2/library15?ver="._cpmp_plugin_ver()._cpmp_afc()."&src=".urlencode(_cpmp_selfURL())."' width='88%' height='100%'></iframe>";
+    echo "<div style='clear: both;'></div><iframe style='position: fixed; left: 165px;' src='//www.cincopa.com/media-platform/wizard2/library15?ver="._cpmp_plugin_ver()."&src=".urlencode(_cpmp_selfURL())."' width='88%' height='100%'></iframe>";
 }
 
 function _cpmp_mt_sublevel_myaccount() {
-    echo "<div style='clear: both;'></div><iframe style='position: fixed; left: 165px;' src='//www.cincopa.com/cincopaManager/manageaccount.aspx?ver="._cpmp_plugin_ver()._cpmp_afc()."&src=".urlencode(_cpmp_selfURL())."' width='88%' height='100%'></iframe>";
+    echo "<div style='clear: both;'></div><iframe style='position: fixed; left: 165px;' src='//www.cincopa.com/cincopaManager/manageaccount.aspx?ver="._cpmp_plugin_ver()."&src=".urlencode(_cpmp_selfURL())."' width='88%' height='100%'></iframe>";
 }
 
 function _cpmp_mt_sublevel_forum() {
